@@ -15,29 +15,28 @@
 
 void main()
 {
-  
+   
    while(true)
-   {
-    int direccion = 255;
-    int lectura = read_eeprom(direccion);
+      {
+         int direccion = 255; //Selecciona la direccion de memoria
+         int lectura = read_eeprom(direccion); //Realiza una lectura en la memoria EEPROM
    
-   if(lectura == 1)
-   {
-      output_high(pin_c0); //Enciende el led
-   }
+         if(lectura == 1) //Si el dato almacenado es uno
+         {
+            output_high(pin_c0); //Enciende el led
+         }
    
-   else if(lectura == 0)
-   {
-      output_low(pin_c0); //Apaga el led
-   }
+         else if(lectura == 0) //Si el dato almacenado es cero
+         {
+            output_low(pin_c0); //Apaga el led
+         }
    
-    if(input(pin_a0) == 1) //Hace una lectura
-     {
-         boolean valor = !lectura;
-         write_eeprom(direccion,valor);
-         delay_ms(1000);
-     }
-      
-   }  
+         if(input(pin_a0) == 1) //Realiza una lectura del boton
+         {
+            boolean valor = !lectura; //Cambia al estado contrario
+            write_eeprom(direccion,valor); //Escribe en la EEPROM
+            delay_ms(1000); //Retarado de 1 segundo
+         }   
+     }  
 }
 ```
